@@ -27,7 +27,7 @@
 
     <li class="menu-bar__list {{ (request()->routeIs('kho*')) ? 'active' : '' }}">
         <div class="menu-bar-block">
-            <i class="bi bi-person-fill"></i>
+            <i class="bi bi-layers"></i>
             <span class="text">Kho hàng</span>
             <i class="bi bi-caret-down-fill arrow-down"></i>
         </div>
