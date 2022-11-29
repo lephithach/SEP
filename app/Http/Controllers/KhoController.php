@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KhoModel;
+use DB;
 
 class KhoController extends Controller
 {
@@ -14,17 +15,29 @@ class KhoController extends Controller
      */
     public function index()
     {
-        $productList = KhoModel::paginate(12);
+        // if(\Request::get('s-soluong')) {
+        //     $tensp = \Request::get('s-soluong');
+        //     // $productList = KhoModel::where('TenSP', 'like', $tensp)->paginate(12);
+            
+        //     // dd($tensp);
+        // } else {
+        //     // $productList = KhoModel::paginate(12);
+        // }
+        $productList = KhoModel::where('SoLuong', '=', '2');
+        
+        return view('sep.kho.kho', compact('productList'));
+    }
 
-        return view('kho', compact('productList'));
+    public function nhapKho() {
+        return view('sep.kho.nhap-kho');
     }
 
     public function fakedata() {
         $dataFake = [];
 
-        for($i = 0; $i < 1000; $i++) {
+        for($i = 1; $i <= 100; $i++) {
             $dataFake[] = [
-                'ID_SP' => null,
+                'MaSP' => null,
                 'TenSP' => "SP ${i}",
                 'SoLuong' => "4",
                 'GiaNhap' => null,
@@ -56,7 +69,22 @@ class KhoController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $request->validate([
+            'tensp' => 'required',
+            'soluong' => 'required|integer',
+            'gianhap' => 'required|integer',
+            'giaban' => 'required|integer',
+        ], [
+            'tensp.required' => 'Tên Sản Phẩm không được để trống',
+            'soluong.required' => 'Số Lượng không được để trống',
+            'soluong.integer' => 'Số Lượng phải là số',
+            'gianhap.required' => 'Giá Nhập không được để trống',
+            'gianhap.integer' => 'Giá Nhập phải là số',
+            'giaban.required' => 'Giá Bán không được để trống',
+            'giaban.integer' => 'Giá Bán phải là số',
+        ]);
+
+        // dd($request->tensp);
     }
 
     /**

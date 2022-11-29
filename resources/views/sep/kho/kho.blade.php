@@ -1,6 +1,6 @@
-@extends('home')
+@extends('layout')
 @section('root')
-<div class="grid lg:grid-cols-1">
+<div>
     <h3 class="font-bold text-xl mb-4">KHO HÀNG</h3>
 
     {{-- <form action=" {{ route('tra-cuu-khach-hang.post') }}" class="grid xl:grid-cols-5" method="post">
@@ -26,8 +26,8 @@
         </div>
     </form> --}}
 
-    <div class="list-order mt-4">
-        <table class="table-auto w-full overflow-x-auto relative uppercase">
+    <div class="list-kho mt-4 relative overflow-x-auto">
+        <table class="table table-fixed w-full uppercase">
             <thead>
                 <tr>
                     <th>STT</th>
@@ -41,6 +41,20 @@
 
             <tbody>
                 @if (count($productList) > 0)
+                <form action="{{ route('kho.index') }}" method="GET">
+                    @csrf
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="text" name="s-tensp" id="s-tensp" class="border rounded" placeholder="search" /></td>
+                        <td><input type="text" name="s-soluong" id="s-soluong" class="border rounded" /></td>
+                        <td><input type="text" name="s-khadung" id="s-khadung" class="border rounded" /></td>
+                        <td><input type="text" name="s-giaban" id="s-giaban" class="border rounded" /></td>
+                        <td><input type="text" name="s-dathang" id="s-dathang" class="border rounded" /></td>
+                    </tr>
+
+                    <input type="submit" value="" hidden />
+                </form>
+
                     @foreach ($productList as $key => $product)
                         <tr>
                             <td class="text-center">{{ ++$key }}</td>
@@ -53,7 +67,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td class="text-center" colspan="4">Chưa có dữ liệu</td>
+                        <td class="text-center" colspan="6">Chưa có dữ liệu</td>
                     </tr>
                 @endif
 
@@ -61,10 +75,10 @@
         </table>
     </div>
 
-    <div class="paginate mt-4">
+    {{-- <div class="paginate mt-4">
         @if (count($productList) > 0)
             {{ $productList->links('vendor.pagination.custom') }}
         @endif
-    </div>
+    </div> --}}
 </div>
 @endsection

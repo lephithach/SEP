@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layout')
 @section('root')
 
 @if(isset($result))
@@ -7,37 +7,43 @@
         $sdt = $result->SDTKhachHang = '0'. $result->SDTKhachHang;
         $hoten = "{$result->Ho} {$result->Ten}";
         $ngaysinh = date('d/m/Y', strtotime($result->NgaySinh));
+        $email = $result->email;
     @endphp
 @endif
 
-    <div class="grid lg:grid-cols-1">
+    <div>
         <h3 class="font-bold text-xl mb-4">TRA CỨU KHÁCH HÀNG</h3>
 
-        <form action=" {{ route('tra-cuu-khach-hang.post') }}" class="grid xl:grid-cols-5" method="post">
+        <form action=" {{ route('khachhang.find') }}" class="flex flex-col md:flex-row gap-4" method="post">
             @csrf
 
             <div class="form-group">
-                <label for="sdt" class="w-1/2">SĐT</label>
-                <input type="text" name="sdt" id="sdt" value="<?= $sdt ?? '' ?>" class="shadow appearance-none border rounded py-2 px-3 text-gray-700" placeholder="Số điện thoại" />
+                <label for="sdt">SĐT</label>
+                <input type="text" name="sdt" id="sdt" value="<?= $sdt ?? '' ?>" autocomplete="off" class="c-input" placeholder="Số điện thoại" />
             </div>
 
             <div class="form-group">
-                <label for="hoten" class="w-1/2">Họ Tên</label>
-                <input type="text" name="hoten" id="hoten" value="<?= $hoten ?? '' ?>" class="shadow bh appearance-none border rounded py-2 px-3 text-gray-700" disabled />
+                <label for="hoten">Họ Tên</label>
+                <input type="text" name="hoten" id="hoten" value="<?= $hoten ?? '' ?>" class="c-input" disabled />
             </div>
 
             <div class="form-group">
-                <label for="ngaysinh" class="w-1/2">Ngày sinh</label>
-                <input type="text" name="ngaysinh" id="ng   aysinh" value="<?= $ngaysinh ?? '' ?>" class="shadow appearance-none border rounded py-2 px-3 text-gray-700" disabled />
+                <label for="ngaysinh">Ngày sinh</label>
+                <input type="text" name="ngaysinh" id="ngaysinh" value="<?= $ngaysinh ?? '' ?>" class="c-input" disabled />
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Tra cứu" class="cursor-poiter shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" />
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?= $email ?? '' ?>" class="c-input" disabled />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Tra cứu" class="c-btn-submit" />
             </div>
         </form>
 
-        <div class="list-order mt-4">
-            <table class="table-auto w-full overflow-x-auto relative uppercase">
+        <div class="list-order mt-4 overflow-x-auto relative">
+            <table class="table-fixed w-full uppercase">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -49,7 +55,7 @@
                 </thead>
 
                 <tbody>
-                    @for ($i=0; $i<10; $i++)
+                    @for ($i=0; $i<5; $i++)
                         <tr>
                             <td class="text-center">{{ $i }}</td>
                             <td>Test {{ $i }}</td>

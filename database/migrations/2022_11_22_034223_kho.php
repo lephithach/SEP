@@ -14,7 +14,7 @@ class Kho extends Migration
     public function up()
     {
         Schema::create('Kho', function (Blueprint $table) {
-            $table->bigIncrements('ID_SP');
+            $table->bigIncrements('MaSP');
             $table->string('TenSP', 200);
             $table->integer('SoLuong');
             $table->integer('GiaNhap')->nullable();
