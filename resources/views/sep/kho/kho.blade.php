@@ -30,31 +30,30 @@
         <table class="table table-fixed w-full uppercase">
             <thead>
                 <tr>
-                    <th>STT</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Tồn</th>
-                    <th>Khả dụng</th>
-                    <th>Đơn giá</th>
-                    <th>Đặt hàng</th>
+                    <th class="w-14">STT</th>
+                    <th class="w-auto">Tên sản phẩm</th>
+                    <th class="w-16">Tồn</th>
+                    <th class="w-16">Khả dụng</th>
+                    <th class="w-24">Đơn giá</th>
+                    <th class="w-16">Đặt hàng</th>
                 </tr>
             </thead>
 
             <tbody>
-                @if (count($productList) > 0)
                 <form action="{{ route('kho.index') }}" method="GET">
-                    @csrf
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="text" name="s-tensp" id="s-tensp" class="border rounded" placeholder="search" /></td>
-                        <td><input type="text" name="s-soluong" id="s-soluong" class="border rounded" /></td>
-                        <td><input type="text" name="s-khadung" id="s-khadung" class="border rounded" /></td>
-                        <td><input type="text" name="s-giaban" id="s-giaban" class="border rounded" /></td>
-                        <td><input type="text" name="s-dathang" id="s-dathang" class="border rounded" /></td>
+                    <tr class="">
+                        <td><input type="reset" name="f-reset" id="f-reset" value="X" class="c-input-form-reset" autocomplete="off" /></td>
+                        <td><input type="text" name="s-tensp" id="s-tensp" class="c-input-form-search" placeholder="Search" value="{{ \Request::get('s-tensp') ?? "" }}" autocomplete="off" /></td>
+                        <td><input type="text" name="s-soluong" id="s-soluong" class="c-input-form-search" placeholder="Search" value="{{ \Request::get('s-soluong') ?? "" }}" autocomplete="off" /></td>
+                        <td><input type="text" name="s-khadung" id="s-khadung" class="c-input-form-search" placeholder="Search" value="{{ \Request::get('s-khadung') ?? "" }}" autocomplete="off" /></td>
+                        <td><input type="text" name="s-giaban" id="s-giaban" class="c-input-form-search" placeholder="Search" value="{{ \Request::get('s-giaban') ?? "" }}" autocomplete="off" /></td>
+                        <td><input type="text" name="s-dathang" id="s-dathang" class="c-input-form-search" placeholder="Search" value="{{ \Request::get('s-dathang') ?? "" }}" autocomplete="off" /></td>
                     </tr>
 
                     <input type="submit" value="" hidden />
                 </form>
 
+                @if (count($productList) > 0)
                     @foreach ($productList as $key => $product)
                         <tr>
                             <td class="text-center">{{ ++$key }}</td>
@@ -75,10 +74,10 @@
         </table>
     </div>
 
-    {{-- <div class="paginate mt-4">
+    <div class="paginate mt-4">
         @if (count($productList) > 0)
             {{ $productList->links('vendor.pagination.custom') }}
         @endif
-    </div> --}}
+    </div>
 </div>
 @endsection

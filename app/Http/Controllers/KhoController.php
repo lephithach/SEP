@@ -15,15 +15,28 @@ class KhoController extends Controller
      */
     public function index()
     {
-        // if(\Request::get('s-soluong')) {
-        //     $tensp = \Request::get('s-soluong');
-        //     // $productList = KhoModel::where('TenSP', 'like', $tensp)->paginate(12);
-            
-        //     // dd($tensp);
-        // } else {
-        //     // $productList = KhoModel::paginate(12);
-        // }
-        $productList = KhoModel::where('SoLuong', '=', '2');
+        // Select table
+        $productList = DB::table("kho");
+
+        // Check get value form url
+        if($tenSP = \Request::get('s-tensp')) {
+            $productList = $productList->where("TenSP", "LIKE", "%{$tenSP}%");
+        }
+        if($soLuong = \Request::get('s-soluong')) {
+            $productList = $productList->where("SoLuong", "=", "{$soLuong}");
+        }
+        if($khaDung = \Request::get('s-khadung')) {
+            $productList = $productList->where("KhaDung", "=", "{$khaDung}");
+        }
+        if($giaBan = \Request::get('s-giaban')) {
+            $productList = $productList->where("GiaBan", "=", "{$giaBan}");
+        }
+        if($datHang = \Request::get('s-dathang')) {
+            $productList = $productList->where("DatHang", "=", "{$datHang}");
+        }
+
+        // Pagination
+        $productList = $productList->paginate(12);
         
         return view('sep.kho.kho', compact('productList'));
     }

@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+.c-title-h3 {
+    @apply font-bold text-xl mb-4;
+}
+
+/* Alert */
+.c-alert-success {
+    @apply p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800;
+}
+
+.c-alert-danger {
+    @apply p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800;
+}
+
+/* Input form */
+.c-input-form-search {
+    @apply border rounded w-full px-2;
+}
+
+.c-input-form-reset {
+    @apply cursor-pointer bg-gray-300 font-bold rounded w-full;
+}
+
 .c-input {
     @apply border-solid border rounded py-2 px-3;
 }
@@ -10,22 +32,10 @@
     @apply border-red-500;
 }
 
-.c-title-h3 {
-    @apply font-bold text-xl mb-4;
-}
-
 .c-btn-submit {
     @apply cursor-pointer transition-all hover:bg-sky-800 px-4 py-2 bg-sky-500 text-white rounded-md;
 }
 
 .c-message-error {
     @apply list-disc ml-2;
-}
-
-.c-alert-success {
-    @apply p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800;
-}
-
-.c-alert-danger {
-    @apply p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800;
 }

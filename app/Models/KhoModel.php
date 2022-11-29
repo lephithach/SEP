@@ -10,6 +10,6 @@ class KhoModel extends Model
     use HasFactory;
 
     protected $table = 'kho';
-    protected $primaryKey = 'ID_SP';
+    protected $primaryKey = 'MaSP';
     public $timestamps = false;
 }
