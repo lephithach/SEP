@@ -121,7 +121,7 @@ class KhachHangController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('sep.khachhang.sua-khach-hang');
     }
 
     /**

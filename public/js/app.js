@@ -2071,6 +2071,14 @@ menuBarList.forEach(function (menuItem) {
   };
 });
 
+// Button reset form search
+var btnReset = document.querySelector("#form-search #f-reset");
+var inputListForm = document.querySelectorAll("#form-search input");
+btnReset.onclick = function (e) {
+  e.preventDefault();
+  console.log(inputListForm);
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -57,11 +57,11 @@
                 <tbody>
                     @for ($i=0; $i<5; $i++)
                         <tr>
-                            <td class="text-center">{{ $i }}</td>
+                            {{-- <td class="text-center">{{ $i }}</td>
                             <td>Test {{ $i }}</td>
                             <td>Malcolm Lockyer</td>
                             <td>1961</td>
-                            <td>1961</td>
+                            <td>1961</td> --}}
                         </tr>
                     @endfor
                 </tbody>

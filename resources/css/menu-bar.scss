@@ -84,7 +84,7 @@ $colorMenuBarBg: #273a49;
 }
 
 .container {
-    width: calc(100% - 250px);
+    max-width: calc(100% - 250px);
     margin-left: 250px;
 
     .form-group input[disabled] {
@@ -97,7 +97,9 @@ $colorMenuBarBg: #273a49;
         }
 
         td {
-            padding: 0.5rem 0;
+            padding: 0.5rem;
+            border: 1px solid rgba($color: #000, $alpha: 0.1);
+            word-wrap: break-word;
         }
     }
 

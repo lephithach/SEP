@@ -23,10 +23,10 @@
         </div>
 
         <ul class="menu-sub">
-            <li class="menu-sub-list {{ (request()->routeIs('khach-hang.tra-cuu')) ? 'active' : '' }}">
+            <li class="menu-sub-list {{ (request()->routeIs('khachhang.index')) ? 'active' : '' }}">
                 <a href="{{ route('khachhang.index') }}">Danh sách</a>
             </li>
-            <li class="menu-sub-list {{ (request()->routeIs('khach-hang.tra-cuu')) ? 'active' : '' }}">
+            <li class="menu-sub-list {{ (request()->routeIs('khachhang.tra-cuu')) ? 'active' : '' }}">
                 <a href="{{ route('khachhang.tra-cuu') }}">Tra cứu</a>
             </li>
             <li class="menu-sub-list {{ (request()->routeIs('khachhang.create')) ? 'active' : '' }}">

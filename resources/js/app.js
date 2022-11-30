@@ -9,3 +9,12 @@ menuBarList.forEach((menuItem) => {
         menuSub.classList.toggle("show");
     };
 });
+
+// Button reset form search
+const btnReset = document.querySelector("#form-search #f-reset");
+const inputListForm = document.querySelectorAll("#form-search input");
+
+btnReset.onclick = (e) => {
+    e.preventDefault();
+    console.log(inputListForm);
+};

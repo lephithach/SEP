@@ -16,7 +16,7 @@ class KhoController extends Controller
     public function index()
     {
         // Select table
-        $productList = DB::table("kho");
+        $productList = KhoModel::select("*");
 
         // Check get value form url
         if($tenSP = \Request::get('s-tensp')) {
@@ -119,7 +119,7 @@ class KhoController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
