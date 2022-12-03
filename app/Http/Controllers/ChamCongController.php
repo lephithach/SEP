@@ -14,7 +14,7 @@ class ChamCongController extends Controller
      */
     public function index(Request $request)
     {
-        return view('sep.chamcong.cham-cong');
+        dd('Chưa có');
     }
 
     public function getIpWan() {
@@ -51,7 +51,7 @@ class ChamCongController extends Controller
     public function store(Request $request)
     {
         $MSNV = 1;
-        $ngayCham = date('Y-m-d H:i:s');
+        $ngayCham = date('Y-m-d');
         $chamVao = date('H:i:s');
 
         $status = ChamCongModel::insert([
@@ -61,6 +61,8 @@ class ChamCongController extends Controller
             'ChamVao' => $chamVao,
             'ChamRa' => $chamVao,
             'IPChamCong' => $this->getIpWan(),
+            'LyDo' => null,
+            'GhiChu' => null,
             'Duyet' => 0
         ]);
 

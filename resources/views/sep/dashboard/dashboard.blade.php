@@ -18,7 +18,7 @@
             
                 <div class="clock">
                     <p class="text-lg">Bây giờ là:</p>
-                    <p class="clock-number text-sky-500 text-4xl font-semibold">00:00</p>
+                    <p class="clock-number text-sky-500 text-4xl font-semibold">--:--:--</p>
                 </div>
             
                 <div class="mt-3">

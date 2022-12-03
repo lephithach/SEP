@@ -19,7 +19,7 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('sep.dashboard.dashboard');
 })->name('dashboard');
 
 Route::prefix('khach-hang')->name('khachhang.')->group(function() {
@@ -35,6 +35,6 @@ Route::prefix('kho')->name('kho.')->group(function() {
     Route::get('/nhap-kho', [KhoController::class, 'nhapKho'])->name('nhapkho');
 });
 
-Route::prefix('cham-cong')->name('chamcong.')->group(function() {
-    Route::resource('/', ChamCongController::class);
-});
+// Route::prefix('cham-cong')->name('chamcong.')->group(function() {
+//     Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update']);
+// });

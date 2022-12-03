@@ -16,10 +16,12 @@ class ChamCong extends Migration
         Schema::create('ChamCong', function (Blueprint $table) {
             $table->bigIncrements('IDCC');
             $table->integer('MSNV')->index();
-            $table->dateTime('NgayCham');
+            $table->date('NgayCham');
             $table->time('ChamVao');
             $table->time('ChamRa');
             $table->string('IPChamCong', 20);
+            $table->string('LyDo', 100)->nullable();
+            $table->string('GhiChu', 100)->nullable();
             $table->boolean('Duyet');
         });
     }
