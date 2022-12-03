@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     KhachHangController,
     KhoController,
+    ChamCongController,
 };
 
 /*
@@ -34,3 +35,6 @@ Route::prefix('kho')->name('kho.')->group(function() {
     Route::get('/nhap-kho', [KhoController::class, 'nhapKho'])->name('nhapkho');
 });
 
+Route::prefix('cham-cong')->name('chamcong.')->group(function() {
+    Route::resource('/', ChamCongController::class);
+});

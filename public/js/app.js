@@ -2072,12 +2072,38 @@ menuBarList.forEach(function (menuItem) {
 });
 
 // Button reset form search
-var btnReset = document.querySelector("#form-search #f-reset");
-var inputListForm = document.querySelectorAll("#form-search input");
-btnReset.onclick = function (e) {
-  e.preventDefault();
-  console.log(inputListForm);
-};
+var btnReset = document.querySelector("table button[type='reset']");
+var inputListForm = document.querySelectorAll("table input");
+
+// Check null element
+if (btnReset != null) {
+  btnReset.onclick = function (e) {
+    e.preventDefault();
+    inputListForm.forEach(function (input) {
+      // Set input value null
+      input.value = "";
+    });
+  };
+}
+
+// Date
+var clockElement = document.querySelector(".clock .clock-number");
+function fixNumber(number) {
+  if (number < 10) {
+    return "0".concat(number);
+  }
+  return number;
+}
+function getTime() {
+  var date = new Date();
+  var hour = date.getHours();
+  var minutes = fixNumber(date.getMinutes());
+  var seconds = fixNumber(date.getSeconds());
+  return "".concat(hour, ":").concat(minutes, ":").concat(seconds);
+}
+setInterval(function (e) {
+  clockElement.innerText = getTime();
+}, 1000);
 
 /***/ }),
 
