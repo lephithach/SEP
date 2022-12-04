@@ -2,7 +2,7 @@
     <li class="menu-bar__list {{ (request()->routeIs('dashboard*')) ? 'active' : '' }}">
         <div class="menu-bar-block">
             <i class="bi bi-house icon"></i>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('dashboard.index') }}">
                 <span class="text">Dashboard</span>
             </a>
             {{-- <i class="bi bi-caret-down-fill arrow-down"></i> --}}

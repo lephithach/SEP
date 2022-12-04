@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use App\Models\ChamCongModel;
 
 class ChamCongController extends Controller
@@ -16,7 +17,14 @@ class ChamCongController extends Controller
      */
     public function index(Request $request)
     {
-        dd('Chưa có');
+        $getCookie = $request->cookie('checkchamcong');
+        return $getCookie;
+    }
+
+    public function getCookie() {
+        $request = new Request();
+        $getCookie = $request->cookie('checkchamcong');
+        return $getCookie;
     }
 
     public function getIpWan() {
@@ -51,7 +59,7 @@ class ChamCongController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         $MSNV = 1;
         $ngayCham = date('Y-m-d');
         $chamVao = date('H:i:s');
@@ -70,12 +78,10 @@ class ChamCongController extends Controller
 
         if($status) {
             // Set cookie 1 day
-            $cookie = setcookie('checkchamcong', '1', 86400, '', '.127.0.0.1');
-
             return redirect()->back()->with([
                 'status' => 'success',
                 'message' => 'Chấm công thành công'
-            ]);
+            ])->withCookie(cookie('checkchamcong', '1', 86400));
         } else {
             return redirect()->back()->with([
                 'status' => 'danger',

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    DashboardController,
     KhachHangController,
     KhoController,
     ChamCongController,
@@ -18,9 +19,9 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/', function () {
-    return view('sep.dashboard.dashboard');
-})->name('dashboard');
+Route::prefix('/')->name('dashboard.')->group(function() {
+    Route::resource('/', DashboardController::class);
+});
 
 Route::prefix('khach-hang')->name('khachhang.')->group(function() {
     // Route::get('/tra-cuu-khach-hang', [KhachHangController::class, 'index'])->name('tra-cuu-khach-hang');
