@@ -39,7 +39,7 @@ function fixNumber(number) {
 
 function getTime() {
     const date = new Date();
-    let hour = date.getHours();
+    let hour = fixNumber(date.getHours());
     let minutes = fixNumber(date.getMinutes());
     let seconds = fixNumber(date.getSeconds());
 

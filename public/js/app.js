@@ -2096,7 +2096,7 @@ function fixNumber(number) {
 }
 function getTime() {
   var date = new Date();
-  var hour = date.getHours();
+  var hour = fixNumber(date.getHours());
   var minutes = fixNumber(date.getMinutes());
   var seconds = fixNumber(date.getSeconds());
   return "".concat(hour, ":").concat(minutes, ":").concat(seconds);
