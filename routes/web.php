@@ -25,9 +25,12 @@ Route::prefix('/')->name('dashboard.')->group(function() {
 
 Route::prefix('khach-hang')->name('khachhang.')->group(function() {
     // Route::get('/tra-cuu-khach-hang', [KhachHangController::class, 'index'])->name('tra-cuu-khach-hang');
+    Route::get('/', [KhachHangController::class, 'index'])->name('index');
     Route::get('/find', [KhachHangController::class, 'find'])->name('tra-cuu');
     Route::post('/find', [KhachHangController::class, 'find'])->name('find');
-    Route::resource('/', KhachHangController::class);
+    Route::get('/{id}/edit', [KhachHangController::class, 'edit'])->name('edit');
+    Route::get('/create', [KhachHangController::class, 'create'])->name('create');
+    // Route::resource('/', KhachHangController::class);
 });
 
 Route::prefix('kho')->name('kho.')->group(function() {
@@ -37,5 +40,12 @@ Route::prefix('kho')->name('kho.')->group(function() {
 });
 
 // Route::prefix('cham-cong')->name('chamcong.')->group(function() {
-//     Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update']);
+//     Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update', 'destroy']);
+// });
+
+// Route::prefix('cham-cong')->name('chamcong.')->group(function() {
+//     // Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update']);
+//     Route::get('/', [ChamCongController::class, 'index'])->name('index');
+//     Route::post('/', [ChamCongController::class, 'store'])->name('store');
+//     Route::get('/{id}', [ChamCongController::class, 'update'])->name('update');
 // });

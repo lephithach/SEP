@@ -64,7 +64,9 @@ class ChamCongController extends Controller
         $ngayCham = date('Y-m-d');
         $chamVao = date('H:i:s');
 
-        $status = ChamCongModel::insert([
+        $chamCong = new ChamCongModel();
+
+        $status = $chamCong->insert([
             'IDCC' => null,
             'MSNV' => $MSNV,
             'NgayCham' => $ngayCham,
@@ -76,12 +78,14 @@ class ChamCongController extends Controller
             'Duyet' => 0
         ]);
 
+        dd($chamCong->lastInsertId());
+
         if($status) {
             // Set cookie 1 day
             return redirect()->back()->with([
                 'status' => 'success',
                 'message' => 'Chấm công thành công'
-            ])->withCookie(cookie('checkchamcong', '1', 86400));
+            ])->withCookie(cookie('checkchamcong', true, 86400), cookie('msnvchamcong', '1', 86400), cookie('', '1', 86400));
         } else {
             return redirect()->back()->with([
                 'status' => 'danger',
@@ -121,7 +125,7 @@ class ChamCongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // ChamCongModel::update()
     }
 
     /**
@@ -132,6 +136,6 @@ class ChamCongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('delete');
     }
 }

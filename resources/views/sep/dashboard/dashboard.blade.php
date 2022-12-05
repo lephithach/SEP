@@ -22,7 +22,7 @@
                 </div>
             
                 <div class="mt-3">
-                    @if (isset($_COOKIE['checkchamcong']))                        
+                    @if (!isset($_COOKIE['checkchamcong']))                        
                     <form id="form-cham-cong" action="{{ route('chamcong.store') }}" method="POST">
                         @csrf
                 
@@ -31,9 +31,9 @@
                         </div>
                     </form>
                     @else
-                    <form id="form-cham-cong" action="{{ route('chamcong.update') }}" method="POST">
-                        @csrf
-                        @method('put')
+                    <form id="form-cham-cong" action="{{ route('chamcong.update', $_COOKIE['checkchamcong']) }}" method="">
+                        {{-- @csrf --}}
+                        {{-- @method("PUT") --}}
                 
                         <div class="form-group">
                             <button type="submit" class="bg-sky-400 p-3 rounded-md text-white">CHẤM RA</button>

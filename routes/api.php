@@ -20,6 +20,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::prefix('cham-cong')->name('chamcong.')->group(function() {
+//     Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update']);
+// });
+
 Route::prefix('cham-cong')->name('chamcong.')->group(function() {
-    Route::resource('/', ChamCongController::class)->only(['index', 'store', 'update']);
+    Route::get('/', [ChamCongController::class, 'index'])->name('index');
+    Route::post('/', [ChamCongController::class, 'store'])->name('store');
+    Route::get('/{id}', [ChamCongController::class, 'update'])->name('update');
 });
