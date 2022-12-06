@@ -10,9 +10,14 @@
             <h3 class="c-title-h3">CHẤM CÔNG</h3>
 
             <div class="text-center">
-                @if(!empty(session()->get('status')))
+                {{-- @if(!empty(session()->get('status')))
                     <div class="c-alert-{{ session()->get('status') }}" role="alert">
                         <p>{{ session()->get('message') }}</p>
+                    </div>
+                @endif --}}
+                @if(isset($_COOKIE['checkChamCong']))
+                    <div class="c-alert-success" role="alert">
+                        <p>Đã chấm công, hãy nhớ chấm ra bạn nhé.</p>
                     </div>
                 @endif
             
@@ -22,7 +27,7 @@
                 </div>
             
                 <div class="mt-3">
-                    @if (!isset($_COOKIE['checkchamcong']))                        
+                    @if (!isset($_COOKIE['checkChamCong']))                        
                     <form id="form-cham-cong" action="{{ route('chamcong.store') }}" method="POST">
                         @csrf
                 
@@ -31,11 +36,10 @@
                         </div>
                     </form>
                     @else
-                    <form id="form-cham-cong" action="{{ route('chamcong.update', $_COOKIE['checkchamcong']) }}" method="">
-                        {{-- @csrf --}}
-                        {{-- @method("PUT") --}}
-                
+                    <form id="form-cham-cong" action="{{ route('chamcong.checkout', $_COOKIE['msnvChamCong']) }}" method="POST">                
                         <div class="form-group">
+                            <input value="{{ $_COOKIE['IDCC'] }}" name="IDCC" hidden />
+                            <input value="{{ $_COOKIE['msnvChamCong'] }}" name="msnvChamCong" hidden />
                             <button type="submit" class="bg-sky-400 p-3 rounded-md text-white">CHẤM RA</button>
                         </div>
                     </form>
@@ -45,7 +49,6 @@
 
         </div>
     </div>
-
 
 </div>
 @endsection

@@ -27,5 +27,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('cham-cong')->name('chamcong.')->group(function() {
     Route::get('/', [ChamCongController::class, 'index'])->name('index');
     Route::post('/', [ChamCongController::class, 'store'])->name('store');
-    Route::get('/{id}', [ChamCongController::class, 'update'])->name('update');
+    Route::post('/checkout', [ChamCongController::class, 'checkOut'])->name('checkout');
 });

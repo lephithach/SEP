@@ -30,6 +30,9 @@ Route::prefix('khach-hang')->name('khachhang.')->group(function() {
     Route::post('/find', [KhachHangController::class, 'find'])->name('find');
     Route::get('/{id}/edit', [KhachHangController::class, 'edit'])->name('edit');
     Route::get('/create', [KhachHangController::class, 'create'])->name('create');
+    Route::post('/update/{id}', [KhachHangController::class, 'update'])->name('update');
+    Route::post('/store', [KhachHangController::class, 'store'])->name('store');
+    Route::post('/show/{id}', [KhachHangController::class, 'show'])->name('show');
     // Route::resource('/', KhachHangController::class);
 });
 

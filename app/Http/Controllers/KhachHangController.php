@@ -121,7 +121,9 @@ class KhachHangController extends Controller
      */
     public function edit($id)
     {
-        return view('sep.khachhang.sua-khach-hang');
+        $khachHang = KhachHangModel::find($id);
+
+        return view('sep.khachhang.sua-khach-hang', compact('khachHang'));
     }
 
     /**
@@ -133,7 +135,17 @@ class KhachHangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except(['_token', 'btn-submit', 'sdt']);
+        $data['SDTKhachHang'] = $request->sdt;
+
+        $statusUpdate = KhachHangModel::where('SDTKhachHang', $id)->update($data);
+
+        if($statusUpdate){
+            return redirect()->route('khachhang.edit', $id)->with([
+                'status' => 'success',
+                'message' => 'Cập nhật thông tin thành công' 
+            ]);
+        }
     }
 
     /**

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Session;
 use App\Models\ChamCongModel;
 
 class ChamCongController extends Controller
@@ -17,12 +16,6 @@ class ChamCongController extends Controller
      */
     public function index(Request $request)
     {
-        $getCookie = $request->cookie('checkchamcong');
-        return $getCookie;
-    }
-
-    public function getCookie() {
-        $request = new Request();
         $getCookie = $request->cookie('checkchamcong');
         return $getCookie;
     }
@@ -64,9 +57,22 @@ class ChamCongController extends Controller
         $ngayCham = date('Y-m-d');
         $chamVao = date('H:i:s');
 
-        $chamCong = new ChamCongModel();
+        // Insert table
+        // $chamCong = new ChamCongModel();
+        // $chamCong->IDCC = null;
+        // $chamCong->MSNV = $MSNV;
+        // $chamCong->NgayCham = $ngayCham;
+        // $chamCong->ChamVao = $chamVao;
+        // $chamCong->ChamRa = $chamVao;
+        // $chamCong->IPChamCong = $this->getIpWan();
+        // $chamCong->LyDo = null;
+        // $chamCong->GhiChu = null;
+        // $chamCong->Duyet = 0;
+        // $chamCong->save();
 
-        $status = $chamCong->insert([
+        // dd($chamCong->save());
+
+        $idInsert = ChamCongModel::insertGetId([
             'IDCC' => null,
             'MSNV' => $MSNV,
             'NgayCham' => $ngayCham,
@@ -78,20 +84,14 @@ class ChamCongController extends Controller
             'Duyet' => 0
         ]);
 
-        dd($chamCong->lastInsertId());
-
-        if($status) {
+        // Redirect back
+        return redirect()->back()
             // Set cookie 1 day
-            return redirect()->back()->with([
-                'status' => 'success',
-                'message' => 'Chấm công thành công'
-            ])->withCookie(cookie('checkchamcong', true, 86400), cookie('msnvchamcong', '1', 86400), cookie('', '1', 86400));
-        } else {
-            return redirect()->back()->with([
-                'status' => 'danger',
-                'message' => 'Chấm công thất bại, vui lòng kiểm tra lại'
+            ->withCookies([
+                Cookie::make('checkChamCong', true, 86400),
+                Cookie::make('msnvChamCong', '1', 86400),
+                Cookie::make('IDCC', $idInsert, 86400)
             ]);
-        }
     }
 
     /**
@@ -126,6 +126,22 @@ class ChamCongController extends Controller
     public function update(Request $request, $id)
     {
         // ChamCongModel::update()
+        dd($request->IDCC);
+    }
+
+    public function checkOut(Request $request) {
+        $IDCC = $request->IDCC;
+        $msnvChamCong = $request->msnvChamCong;
+        $chamRa = date('H:i:s');
+
+        $statusUpdate = ChamCongModel::where('IDCC', $IDCC)->where('MSNV', $msnvChamCong)->update(['ChamRa' => $chamRa]);
+
+        if($statusUpdate) {
+            return redirect()->back()
+                ->withCookie(Cookie::forget('checkChamCong'))
+                ->withCookie(Cookie::forget('msnvChamCong'))
+                ->withCookie(Cookie::forget('IDCC'));
+        }
     }
 
     /**
