@@ -51,4 +51,18 @@
             </li>
         </ul>
     </li>
+
+    <li class="menu-bar__list {{ (request()->routeIs('cauhinh*')) ? 'active' : '' }}">
+        <div class="menu-bar-block">
+            <i class="bi bi-pc-display"></i>
+            <span class="text">Hệ thống</span>
+            <i class="bi bi-caret-down-fill arrow-down"></i>
+        </div>
+
+        <ul class="menu-sub">
+            <li class="menu-sub-list {{ (request()->routeIs('cauhinh.index')) ? 'active' : '' }}">
+                <a href="{{ route('cauhinh.index') }}">Cấu hình</a>
+            </li>
+        </ul>
+    </li>
 </ul>

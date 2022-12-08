@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     KhachHangController,
     KhoController,
     ChamCongController,
+    CauHinhController,
 };
 
 /*
@@ -40,6 +41,10 @@ Route::prefix('kho')->name('kho.')->group(function() {
     Route::resource('/', KhoController::class);
     Route::get('/fake-data', [KhoController::class, 'fakedata']);
     Route::get('/nhap-kho', [KhoController::class, 'nhapKho'])->name('nhapkho');
+});
+
+Route::prefix('cau-hinh')->name('cauhinh.')->group(function() {
+    Route::resource('/', CauHinhController::class);
 });
 
 // Route::prefix('cham-cong')->name('chamcong.')->group(function() {
